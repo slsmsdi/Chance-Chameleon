@@ -1,0 +1,578 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2575.7">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+  </style>
+</head>
+<body>
+<p class="p1">&lt;!DOCTYPE html&gt;</p>
+<p class="p1">&lt;html lang="en"&gt;</p>
+<p class="p1">&lt;head&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta charset="UTF-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;title&gt;Chance Chameleon - Probability Calculator&lt;/title&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;script src="https://cdn.tailwindcss.com"&gt;&lt;/script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;style&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.bar-transition {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transition: height 0.6s cubic-bezier(0.4, 0, 0.2, 1);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><span class="Apple-converted-space">        </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.mono {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-family: 'Courier New', monospace;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><span class="Apple-converted-space">        </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.focus-visible:focus {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>outline: 2px solid #6366f1;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>outline-offset: 2px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><span class="Apple-converted-space">        </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.hero-gradient {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/style&gt;</p>
+<p class="p1">&lt;/head&gt;</p>
+<p class="p1">&lt;body class="bg-gray-50"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Hero Section --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;section class="hero-gradient text-white py-20"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="container mx-auto px-4 max-w-6xl text-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;h1 class="text-5xl md:text-6xl font-bold mb-4"&gt;🦎 Chance Chameleon&lt;/h1&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;p class="text-xl md:text-2xl mb-6"&gt;Calculate probabilities easily and understand them at a glance with visualization&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;p class="text-lg mb-8 opacity-90"&gt;A client-side probability calculator for students, creators, and analysts.&lt;br&gt;All calculations are processed in your browser for speed and security&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;button onclick="document.getElementById('calculators').scrollIntoView({behavior: 'smooth'})" class="bg-white text-indigo-600 px-8 py-4 rounded-lg font-bold text-lg hover:bg-gray-100 transition shadow-lg"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>Start Calculating</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;p class="mt-6 text-sm opacity-80"&gt;Three modes supported: Single Event · Independent Events · Dependent Events · Mutually Exclusive Events&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Calculators Section --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;section id="calculators" class="py-16 bg-white"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="container mx-auto px-4 max-w-6xl"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="grid md:grid-cols-2 gap-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;!-- Single Event Calculator --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="bg-gradient-to-br from-indigo-50 to-purple-50 rounded-2xl shadow-xl p-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h2 class="text-3xl font-bold text-indigo-700 mb-3"&gt;Single Event Probability&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="text-gray-600 mb-6"&gt;Enter favorable and total outcomes to instantly see probability and percentage&lt;/p&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                    </span></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;form id="singleEventForm" class="space-y-5"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;label for="favorable" class="block text-sm font-medium text-gray-700 mb-2"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>Favorable Outcomes</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;input<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                                </span>type="number"<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                                </span>id="favorable"<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                                </span>name="favorable"</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>placeholder="e.g., 3"</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>min="0"</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>step="1"</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>class="w-full px-4 py-3 border-2 border-indigo-200 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>aria-describedby="favorable-help"</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;p id="favorable-help" class="text-xs text-gray-500 mt-1"&gt;Must be ≥ 0 (integer)&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                        </span></p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;label for="total" class="block text-sm font-medium text-gray-700 mb-2"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>Total Possible Outcomes</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;input<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                                </span>type="number"<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                                </span>id="total"<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                                </span>name="total"</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>placeholder="e.g., 10"</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>min="1"</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>step="1"</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>class="w-full px-4 py-3 border-2 border-indigo-200 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>aria-describedby="total-help"</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;p id="total-help" class="text-xs text-gray-500 mt-1"&gt;Must be ≥ 1 (integer)&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                        </span></p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div id="singleEventError" class="text-red-600 text-sm font-medium hidden" role="alert"&gt;&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                        </span></p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;button<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                            </span>type="submit"</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>class="w-full bg-indigo-600 text-white py-4 rounded-lg font-bold text-lg hover:bg-indigo-700 transition shadow-lg focus-visible"</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>Calculate</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/form&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                    </span></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div id="singleEventResult" class="mt-6 p-6 bg-white rounded-xl shadow-md hidden" aria-live="polite"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;p class="text-sm text-indigo-600 font-medium mb-2"&gt;Probability&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;p class="text-4xl font-bold text-indigo-900 mono" id="singleProbability"&gt;-&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;p class="text-xl text-indigo-600 mono mt-2" id="singlePercent"&gt;-&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;p class="text-xs text-gray-500 mt-3"&gt;Calculation complete. Check the result above.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;!-- Multiple Events Calculator --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl shadow-xl p-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h2 class="text-3xl font-bold text-purple-700 mb-3"&gt;Multiple Events Probability&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="text-gray-600 mb-6"&gt;Select event type and enter probabilities to calculate combined probability&lt;/p&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                    </span></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;form id="multipleEventsForm" class="space-y-5"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;label for="eventType" class="block text-sm font-medium text-gray-700 mb-2"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>Event Type</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;select<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                                </span>id="eventType"<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                                </span>name="eventType"</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>class="w-full px-4 py-3 border-2 border-purple-200 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;option value="independent"&gt;Independent (multiply)&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;option value="dependent"&gt;Dependent (conditional multiply)&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;option value="mutually-exclusive"&gt;Mutually Exclusive (add, max 1)&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/select&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                        </span></p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;label class="block text-sm font-medium text-gray-700 mb-2"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>Event Probabilities (0 to 1)</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div id="probabilityInputs" class="space-y-3"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;button<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                                </span>type="button"</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>id="addProbability"</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>class="mt-3 text-purple-600 hover:text-purple-700 font-medium text-sm flex items-center gap-1 focus-visible"</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>➕ Add Event</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                        </span></p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div id="multipleEventsError" class="text-red-600 text-sm font-medium hidden" role="alert"&gt;&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                        </span></p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;button<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                            </span>type="submit"</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>class="w-full bg-purple-600 text-white py-4 rounded-lg font-bold text-lg hover:bg-purple-700 transition shadow-lg focus-visible"</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>Calculate</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/form&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                    </span></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div id="multipleEventsResult" class="mt-6 p-6 bg-white rounded-xl shadow-md hidden" aria-live="polite"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;p class="text-sm text-purple-600 font-medium mb-2"&gt;Combined Probability&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;p class="text-4xl font-bold text-purple-900 mono" id="multipleProbability"&gt;-&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;p class="text-xl text-purple-600 mono mt-2" id="multiplePercent"&gt;-&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;p class="text-xs text-gray-500 mt-3"&gt;Calculation complete. Check the result above.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                    </span></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="mt-6 p-4 bg-purple-100 rounded-lg text-xs text-gray-700"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;p class="font-semibold mb-2"&gt;Mathematical Rules:&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;ul class="space-y-1"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;li&gt;• &lt;strong&gt;Independent:&lt;/strong&gt; Multiply all probabilities&lt;/li&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;li&gt;• &lt;strong&gt;Dependent:&lt;/strong&gt; Multiply conditional probabilities in order&lt;/li&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;li&gt;• &lt;strong&gt;Mutually Exclusive:&lt;/strong&gt; Add all probabilities, clamped at 1&lt;/li&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/ul&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Visualization Section --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;section class="py-16 bg-gradient-to-br from-gray-50 to-gray-100"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="container mx-auto px-4 max-w-6xl"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="bg-white rounded-2xl shadow-xl p-8 md:p-12"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;h2 class="text-3xl font-bold text-gray-800 mb-3 text-center"&gt;📈 Probability Visualization&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;p class="text-gray-600 text-center mb-10"&gt;Success and failure represented by two vertical bars. Heights update smoothly with each calculation&lt;/p&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="flex gap-12 items-end justify-center h-96" aria-label="Probability bar chart"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;!-- Success Bar --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="flex flex-col items-center flex-1 max-w-xs"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="relative w-full h-80 bg-gray-100 rounded-xl overflow-hidden shadow-inner"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                                </span>id="successBar"</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>class="absolute bottom-0 w-full bg-gradient-to-t from-green-500 to-green-400 bar-transition flex items-end justify-center pb-3"</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>style="height: 0%;"</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>role="progressbar"</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>aria-valuenow="0"</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>aria-valuemin="0"</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>aria-valuemax="100"</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>aria-label="Success probability"</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;span id="successLabel" class="text-white font-bold text-2xl"&gt;0%&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;p class="mt-4 font-bold text-green-700 text-xl"&gt;Success&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                    </span></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;!-- Failure Bar --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="flex flex-col items-center flex-1 max-w-xs"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="relative w-full h-80 bg-gray-100 rounded-xl overflow-hidden shadow-inner"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                                </span>id="failureBar"</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>class="absolute bottom-0 w-full bg-gradient-to-t from-red-400 to-red-300 bar-transition flex items-end justify-center pb-3"</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>style="height: 100%;"</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>role="progressbar"</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>aria-valuenow="100"</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>aria-valuemin="0"</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>aria-valuemax="100"</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>aria-label="Failure probability"</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;span id="failureLabel" class="text-white font-bold text-2xl"&gt;100%&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;p class="mt-4 font-bold text-red-700 text-xl"&gt;Failure&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Examples Section --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;section class="py-16 bg-white"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="container mx-auto px-4 max-w-6xl"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;h2 class="text-3xl font-bold text-gray-800 mb-10 text-center"&gt;Quick Examples&lt;/h2&gt;</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="bg-indigo-50 p-6 rounded-xl border-2 border-indigo-200"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h3 class="font-bold text-indigo-700 mb-3"&gt;Single Event&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="text-sm text-gray-600 mb-2"&gt;Input: 3 and 10&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="text-sm text-gray-800"&gt;&lt;strong&gt;Probability:&lt;/strong&gt; 0.3&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="text-sm text-gray-800"&gt;&lt;strong&gt;Percent:&lt;/strong&gt; 30.0000%&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="bg-purple-50 p-6 rounded-xl border-2 border-purple-200"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h3 class="font-bold text-purple-700 mb-3"&gt;Independent Events&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="text-sm text-gray-600 mb-2"&gt;Input: 0.5, 0.6, 0.25&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="text-sm text-gray-800"&gt;&lt;strong&gt;Probability:&lt;/strong&gt; 0.075&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="text-sm text-gray-800"&gt;&lt;strong&gt;Percent:&lt;/strong&gt; 7.5000%&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="bg-pink-50 p-6 rounded-xl border-2 border-pink-200"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h3 class="font-bold text-pink-700 mb-3"&gt;Dependent Events&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="text-sm text-gray-600 mb-2"&gt;Input: 0.2, 0.5, 0.4&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="text-sm text-gray-800"&gt;&lt;strong&gt;Probability:&lt;/strong&gt; 0.04&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="text-sm text-gray-800"&gt;&lt;strong&gt;Percent:&lt;/strong&gt; 4.0000%&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="bg-green-50 p-6 rounded-xl border-2 border-green-200"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h3 class="font-bold text-green-700 mb-3"&gt;Mutually Exclusive&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="text-sm text-gray-600 mb-2"&gt;Input: 0.7, 0.5&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="text-sm text-gray-800"&gt;&lt;strong&gt;Probability:&lt;/strong&gt; 1.0&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="text-sm text-gray-800"&gt;&lt;strong&gt;Percent:&lt;/strong&gt; 100.0000%&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="text-xs text-gray-500 mt-1"&gt;(clamping applied)&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- How It Works Section --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;section class="py-16 bg-gray-50"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="container mx-auto px-4 max-w-4xl"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;h2 class="text-3xl font-bold text-gray-800 mb-10 text-center"&gt;How It Works&lt;/h2&gt;</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="space-y-6"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="bg-white p-6 rounded-xl shadow-md"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h3 class="font-bold text-indigo-700 text-xl mb-3"&gt;Single Event&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="text-gray-700"&gt;Probability is the number of favorable outcomes divided by the total number of possible outcomes.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="bg-white p-6 rounded-xl shadow-md"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h3 class="font-bold text-purple-700 text-xl mb-3"&gt;Independent Events&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="text-gray-700"&gt;All events do not affect each other, so multiply each probability together.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="bg-white p-6 rounded-xl shadow-md"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h3 class="font-bold text-pink-700 text-xl mb-3"&gt;Dependent Events&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="text-gray-700"&gt;The input values for the second and subsequent events should be conditional probabilities given that previous events occurred. Multiplication still applies.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="bg-white p-6 rounded-xl shadow-md"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h3 class="font-bold text-green-700 text-xl mb-3"&gt;Mutually Exclusive Events&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="text-gray-700"&gt;Two or more events cannot occur simultaneously, so add the probabilities. The sum is clamped at 1.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="bg-indigo-50 p-6 rounded-xl border-2 border-indigo-200"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h3 class="font-bold text-indigo-700 text-xl mb-3"&gt;Rounding and Notation&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="text-gray-700"&gt;Decimal probabilities are displayed up to 10 digits, and percentages are shown to 4 decimal places.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Accessibility Section --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;section class="py-16 bg-white"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="container mx-auto px-4 max-w-4xl"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;h2 class="text-3xl font-bold text-gray-800 mb-10 text-center"&gt;Designed for Accessibility&lt;/h2&gt;</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="bg-gradient-to-br from-indigo-50 to-purple-50 p-8 rounded-xl shadow-md"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;ul class="space-y-4 text-gray-700"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li class="flex items-start gap-3"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span class="text-indigo-600 font-bold"&gt;✓&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span&gt;All inputs are connected to their labels&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/li&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li class="flex items-start gap-3"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span class="text-indigo-600 font-bold"&gt;✓&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span&gt;Result areas have live region attributes so screen readers can announce changes&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/li&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li class="flex items-start gap-3"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span class="text-indigo-600 font-bold"&gt;✓&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span&gt;Success and failure bars include progressbar role and current values&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/li&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li class="flex items-start gap-3"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span class="text-indigo-600 font-bold"&gt;✓&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span&gt;Errors are communicated with text, not just color&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/li&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li class="flex items-start gap-3"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span class="text-indigo-600 font-bold"&gt;✓&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span&gt;Add and remove rows using keyboard only&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/li&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/ul&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;p class="mt-6 text-sm text-gray-600 italic"&gt;Use Tab key to navigate inputs and Enter or Space to activate buttons&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- FAQ Section --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;section class="py-16 bg-gray-50"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="container mx-auto px-4 max-w-4xl"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;h2 class="text-3xl font-bold text-gray-800 mb-10 text-center"&gt;Frequently Asked Questions&lt;/h2&gt;</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="space-y-6"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="bg-white p-6 rounded-xl shadow-md"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h3 class="font-bold text-gray-800 text-lg mb-2"&gt;Why do some inputs show NaN as the result?&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="text-gray-600"&gt;It may be due to incorrect format or values outside the valid range. Check that your inputs are integers or numbers between 0 and 1.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="bg-white p-6 rounded-xl shadow-md"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h3 class="font-bold text-gray-800 text-lg mb-2"&gt;What should I enter for dependent events?&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="text-gray-600"&gt;The second and subsequent values represent conditional probabilities. Example: the second value is the probability given that the first event has occurred.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="bg-white p-6 rounded-xl shadow-md"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h3 class="font-bold text-gray-800 text-lg mb-2"&gt;Can the percentage exceed 100?&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="text-gray-600"&gt;In mutually exclusive mode, even if the sum exceeds 1, it is clamped and displayed as 1.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="bg-white p-6 rounded-xl shadow-md"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h3 class="font-bold text-gray-800 text-lg mb-2"&gt;Does it work without internet?&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="text-gray-600"&gt;Yes. All calculations are performed inside your browser.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Privacy Section --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;section class="py-16 bg-white"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="container mx-auto px-4 max-w-4xl text-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;h2 class="text-3xl font-bold text-gray-800 mb-6"&gt;Your Data Stays in Your Browser&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;p class="text-gray-600 max-w-2xl mx-auto"&gt;Input values are never sent to a server. You can use this tool without a network connection. Optionally, recent calculation results can be stored in browser storage, but you can clear them anytime.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Footer --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;footer class="bg-gradient-to-r from-indigo-900 to-purple-900 text-white py-12"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="container mx-auto px-4 max-w-6xl"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="text-center mb-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;h3 class="text-2xl font-bold mb-3"&gt;🦎 Chance Chameleon&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;p class="text-indigo-200 mb-4"&gt;Use freely for learning, teaching, and assignments.&lt;br&gt;Always verify your input values and event type for accurate calculations.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="border-t border-indigo-700 pt-8 text-center text-sm text-indigo-200"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;p&gt;&amp;copy; 2025 Chance Chameleon. All rights reserved.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;p class="mt-2"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;a href="#" class="hover:text-white transition"&gt;Terms of Use&lt;/a&gt; ·<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;a href="#" class="hover:text-white transition"&gt;Accessibility Statement&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/footer&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>// Utility functions</p>
+<p class="p1"><span class="Apple-converted-space">        </span>function clamp(value, min, max) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>return Math.max(min, Math.min(max, value));</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>function formatPercent(probability) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>return (probability * 100).toFixed(4) + '%';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>function formatProbability(probability) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>return probability.toFixed(10);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// Visualization update</p>
+<p class="p1"><span class="Apple-converted-space">        </span>function updateBars(probability) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const clamped = clamp(probability, 0, 1);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const successPercent = clamped * 100;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const failurePercent = (1 - clamped) * 100;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>const successBar = document.getElementById('successBar');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const failureBar = document.getElementById('failureBar');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const successLabel = document.getElementById('successLabel');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const failureLabel = document.getElementById('failureLabel');</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>successBar.style.height = successPercent + '%';</p>
+<p class="p1"><span class="Apple-converted-space">            </span>failureBar.style.height = failurePercent + '%';</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>successLabel.textContent = successPercent.toFixed(1) + '%';</p>
+<p class="p1"><span class="Apple-converted-space">            </span>failureLabel.textContent = failurePercent.toFixed(1) + '%';</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>successBar.setAttribute('aria-valuenow', successPercent.toFixed(1));</p>
+<p class="p1"><span class="Apple-converted-space">            </span>failureBar.setAttribute('aria-valuenow', failurePercent.toFixed(1));</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// Single Event Calculator</p>
+<p class="p1"><span class="Apple-converted-space">        </span>document.getElementById('singleEventForm').addEventListener('submit', function(e) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>e.preventDefault();</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>const favorable = parseInt(document.getElementById('favorable').value);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const total = parseInt(document.getElementById('total').value);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const errorDiv = document.getElementById('singleEventError');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const resultDiv = document.getElementById('singleEventResult');</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>errorDiv.classList.add('hidden');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>errorDiv.textContent = '';</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Validation</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (isNaN(favorable) || isNaN(total)) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>errorDiv.textContent = 'Please enter integers';</p>
+<p class="p1"><span class="Apple-converted-space">                </span>errorDiv.classList.remove('hidden');</p>
+<p class="p1"><span class="Apple-converted-space">                </span>return;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (total &lt;= 0) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>errorDiv.textContent = 'Total outcomes must be greater than or equal to 1';</p>
+<p class="p1"><span class="Apple-converted-space">                </span>errorDiv.classList.remove('hidden');</p>
+<p class="p1"><span class="Apple-converted-space">                </span>return;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (favorable &lt; 0) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>errorDiv.textContent = 'Favorable outcomes must be greater than or equal to 0';</p>
+<p class="p1"><span class="Apple-converted-space">                </span>errorDiv.classList.remove('hidden');</p>
+<p class="p1"><span class="Apple-converted-space">                </span>return;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (favorable &gt; total) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>errorDiv.textContent = 'Favorable outcomes must be between 0 and total outcomes';</p>
+<p class="p1"><span class="Apple-converted-space">                </span>errorDiv.classList.remove('hidden');</p>
+<p class="p1"><span class="Apple-converted-space">                </span>return;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Calculate</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const probability = favorable / total;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById('singleProbability').textContent = formatProbability(probability);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById('singlePercent').textContent = formatPercent(probability);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>resultDiv.classList.remove('hidden');</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Update visualization</p>
+<p class="p1"><span class="Apple-converted-space">            </span>updateBars(probability);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// Multiple Events Calculator - Dynamic inputs</p>
+<p class="p1"><span class="Apple-converted-space">        </span>let eventCount = 0;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>function addProbabilityInput(value = '') {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const container = document.getElementById('probabilityInputs');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const inputId = 'prob' + eventCount;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const div = document.createElement('div');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>div.className = 'flex gap-2 items-center';</p>
+<p class="p1"><span class="Apple-converted-space">            </span>div.innerHTML = `</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;input<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>type="number"<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>id="${inputId}"</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>name="probability"</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>placeholder="e.g., 0.5"</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>min="0"</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>max="1"</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>step="0.01"</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>value="${value}"</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>class="flex-1 px-4 py-3 border-2 border-purple-200 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>aria-label="Event ${eventCount + 1} probability"</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;button<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>type="button"</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>class="remove-prob text-red-600 hover:text-red-700 p-2 text-xl font-bold focus-visible"</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>aria-label="Remove event ${eventCount + 1}"</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>✕</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>`;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>container.appendChild(div);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>eventCount++;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Add remove handler</p>
+<p class="p1"><span class="Apple-converted-space">            </span>div.querySelector('.remove-prob').addEventListener('click', function() {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (container.children.length &gt; 1) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>div.remove();</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// Initialize with 2 inputs</p>
+<p class="p1"><span class="Apple-converted-space">        </span>addProbabilityInput();</p>
+<p class="p1"><span class="Apple-converted-space">        </span>addProbabilityInput();</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>document.getElementById('addProbability').addEventListener('click', function() {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>addProbabilityInput();</p>
+<p class="p1"><span class="Apple-converted-space">        </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// Multiple Events Form Submit</p>
+<p class="p1"><span class="Apple-converted-space">        </span>document.getElementById('multipleEventsForm').addEventListener('submit', function(e) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>e.preventDefault();</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>const eventType = document.getElementById('eventType').value;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const inputs = document.querySelectorAll('input[name="probability"]');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const errorDiv = document.getElementById('multipleEventsError');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const resultDiv = document.getElementById('multipleEventsResult');</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>errorDiv.classList.add('hidden');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>errorDiv.textContent = '';</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Collect and validate probabilities</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const probabilities = [];</p>
+<p class="p1"><span class="Apple-converted-space">            </span>for (let input of inputs) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const val = parseFloat(input.value);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (isNaN(val)) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>errorDiv.textContent = 'Please enter valid numbers for all probability fields';</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>errorDiv.classList.remove('hidden');</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>return;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (val &lt; 0 || val &gt; 1) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>errorDiv.textContent = 'Each probability must be between 0 and 1';</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>errorDiv.classList.remove('hidden');</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>return;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                </span>probabilities.push(val);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (probabilities.length &lt; 1) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>errorDiv.textContent = 'Please add at least one event probability';</p>
+<p class="p1"><span class="Apple-converted-space">                </span>errorDiv.classList.remove('hidden');</p>
+<p class="p1"><span class="Apple-converted-space">                </span>return;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Calculate based on event type</p>
+<p class="p1"><span class="Apple-converted-space">            </span>let result;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (eventType === 'independent' || eventType === 'dependent') {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>result = probabilities.reduce((acc, p) =&gt; acc * p, 1);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>} else if (eventType === 'mutually-exclusive') {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>result = probabilities.reduce((acc, p) =&gt; acc + p, 0);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>result = clamp(result, 0, 1);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Display result</p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById('multipleProbability').textContent = formatProbability(result);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById('multiplePercent').textContent = formatPercent(result);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>resultDiv.classList.remove('hidden');</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Update visualization</p>
+<p class="p1"><span class="Apple-converted-space">            </span>updateBars(result);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>});</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/script&gt;</p>
+<p class="p1">&lt;/body&gt;</p>
+<p class="p1">&lt;/html&gt;</p>
+</body>
+</html>
